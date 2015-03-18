@@ -57,24 +57,13 @@ public class ListViewAdapter extends BaseAdapter {
         ViewHolder holder;
 
         // initialize view
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.top_bottom, null);
-            holder = new ViewHolder();
-            holder.tvLargeReg = (TextView) convertView.findViewById(R.id.textViewLargeReg);
-            holder.tvLargeLight = (TextView) convertView.findViewById(R.id.textViewLargeLight);
-            holder.tvLargeCondensed = (TextView) convertView.findViewById(R.id.textViewLargeCondensed);
-            holder.tvSmall = (TextView) convertView.findViewById(R.id.textViewSmall);
-            Log.i("TEST", "new convertView");
-        } else {
-            //holder = (ViewHolder) convertView.getTag();
-            Log.i("TEST", "old convertView");
-            convertView = inflater.inflate(R.layout.top_bottom, null);
-            holder = new ViewHolder();
-            holder.tvLargeReg = (TextView) convertView.findViewById(R.id.textViewLargeReg);
-            holder.tvLargeLight = (TextView) convertView.findViewById(R.id.textViewLargeLight);
-            holder.tvLargeCondensed = (TextView) convertView.findViewById(R.id.textViewLargeCondensed);
-            holder.tvSmall = (TextView) convertView.findViewById(R.id.textViewSmall);
-        }
+
+        convertView = inflater.inflate(R.layout.top_bottom, null);
+        holder = new ViewHolder();
+        holder.tvLargeReg = (TextView) convertView.findViewById(R.id.textViewLargeReg);
+        holder.tvLargeLight = (TextView) convertView.findViewById(R.id.textViewLargeLight);
+        holder.tvLargeCondensed = (TextView) convertView.findViewById(R.id.textViewLargeCondensed);
+        holder.tvSmall = (TextView) convertView.findViewById(R.id.textViewSmall);
 
         // set text
         String title = listOfChars.get(position);
