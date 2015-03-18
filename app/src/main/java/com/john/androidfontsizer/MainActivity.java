@@ -2,8 +2,13 @@ package com.john.androidfontsizer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +17,12 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LayoutInflater inflater = getLayoutInflater();
+        ListView lv = (ListView) findViewById(R.id.listView);
+        String[] alphabet = getResources().getStringArray(R.array.list_items);
+        ArrayList<String> alList = new ArrayList<String>(Arrays.asList(alphabet));
+        lv.setAdapter(new ListViewAdapter(this,
+                alList, 8, 36));
     }
 
 
@@ -36,4 +47,6 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="list_items">
+        <item>abcdefghijklmnopqrstuvwxyz0123456789</item>
+        <item>ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</item>
+    </string-array>
 </resources>
