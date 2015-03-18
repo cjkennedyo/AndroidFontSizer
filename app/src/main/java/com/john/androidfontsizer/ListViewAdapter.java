@@ -1,6 +1,8 @@
 package com.john.androidfontsizer;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +18,14 @@ public class ListViewAdapter extends BaseAdapter {
 
     private ArrayList<String> listOfChars;
     private LayoutInflater inflater;
-    private Context ctx;
+    private Activity ctx;
     private int startPoint;
     private int endPoint;
 
-    public ListViewAdapter(Context context, ArrayList<String> items, int startPt, int endPt) {
+    public ListViewAdapter(Activity ctx, ArrayList<String> items, int startPt, int endPt) {
         //super(context, items);
         this.inflater = LayoutInflater.from(ctx);
-        this.ctx = context;
+        this.ctx = ctx;
         this.listOfChars = items;
         this.startPoint = startPt;
         this.endPoint = endPt;
@@ -45,7 +47,9 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        //Log.i("TEST", "Size=" + listOfChars.size());
         return listOfChars.size();
+
     }
 
     @Override
@@ -56,26 +60,40 @@ public class ListViewAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.top_bottom, null);
             holder = new ViewHolder();
-            holder.tvLarge = (TextView) convertView.findViewById(R.id.textViewLarge);
+            holder.tvLargeReg = (TextView) convertView.findViewById(R.id.textViewLargeReg);
+            holder.tvLargeLight = (TextView) convertView.findViewById(R.id.textViewLargeLight);
+            holder.tvLargeCondensed = (TextView) convertView.findViewById(R.id.textViewLargeCondensed);
             holder.tvSmall = (TextView) convertView.findViewById(R.id.textViewSmall);
-
+            Log.i("TEST", "new convertView");
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            //holder = (ViewHolder) convertView.getTag();
+            Log.i("TEST", "old convertView");
+            convertView = inflater.inflate(R.layout.top_bottom, null);
+            holder = new ViewHolder();
+            holder.tvLargeReg = (TextView) convertView.findViewById(R.id.textViewLargeReg);
+            holder.tvLargeLight = (TextView) convertView.findViewById(R.id.textViewLargeLight);
+            holder.tvLargeCondensed = (TextView) convertView.findViewById(R.id.textViewLargeCondensed);
+            holder.tvSmall = (TextView) convertView.findViewById(R.id.textViewSmall);
         }
 
         // set text
         String title = listOfChars.get(position);
-        holder.tvLarge.setText(title);
-
-        // set point
-        //holder.tvLarge.setTextSize(startPoint % 2);
-        //(startPoint % 2);
+        holder.tvLargeReg.setText("Roboto Regular: " + listOfChars.get(position));
+        holder.tvLargeReg.setTextSize(position + 8);
+        holder.tvLargeLight.setText("Roboto Light: " + listOfChars.get(position));
+        holder.tvLargeLight.setTextSize(position + 8);
+        holder.tvLargeCondensed.setText("Roboto Condensed: " + listOfChars.get(position));
+        holder.tvLargeCondensed.setTextSize(position + 8);
+        holder.tvSmall.setText((position + 8) + " sp");
+        holder.tvSmall.setTextSize(12);
 
         return convertView;
     }
 
     private static class ViewHolder {
-        TextView tvLarge;
+        TextView tvLargeReg;
+        TextView tvLargeLight;
+        TextView tvLargeCondensed;
         TextView tvSmall;
     }
 

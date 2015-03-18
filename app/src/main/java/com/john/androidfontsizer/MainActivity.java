@@ -19,10 +19,13 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         LayoutInflater inflater = getLayoutInflater();
         ListView lv = (ListView) findViewById(R.id.listView);
-        String[] alphabet = getResources().getStringArray(R.array.list_items);
-        ArrayList<String> alList = new ArrayList<String>(Arrays.asList(alphabet));
-        lv.setAdapter(new ListViewAdapter(this,
-                alList, 8, 36));
+        //String[] alphabet = getResources().getStringArray(R.array.list_items);
+        //ArrayList<String> alList = new ArrayList<String>(Arrays.asList(alphabet));
+        ArrayList<String> alList = new ArrayList<String>();
+        for (int i = 8; i <= 36; i++) {
+            alList.add("abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        }
+        lv.setAdapter(new ListViewAdapter(this, alList, 8, 36));
     }
 
 
